@@ -1,0 +1,41 @@
+openapi: 3.0.0
+info:
+  title: Account Status API
+  version: 1.0.0
+  description: API to retrieve real-time account status using AccountId
+
+paths:
+  /newBankAccountStatus:
+    get:
+      operationId: getAccountStatus
+      summary: Get account status using AccountId
+      description: MUST be used to retrieve account status from database when user provides an AccountId
+
+      parameters:
+        - name: AccountId
+          in: query
+          required: true
+          description: Account ID of the customer
+          schema:
+            type: integer
+
+      responses:
+        '200':
+          description: Successful response containing account details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  AccountId:
+                    type: integer
+                    description: Unique account identifier
+                  AccountName:
+                    type: string
+                    description: Name of the account holder
+                  AccountStatus:
+                    type: string
+                    description: Current status of the account
+                  Reason:
+                    type: string
+                    description: Reason for the current status
